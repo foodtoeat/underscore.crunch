@@ -55,7 +55,7 @@
           _.isFunction(callbacks.error) ? callbacks.success : function() {}
         ),
         complete: _.after(
-          calls.complete,
+          calls.length,
           _.isFunction(callbacks.complete) ? callbacks.complete : function() {}
         )
       };
@@ -64,12 +64,17 @@
         if (_.isFunction(c)) {
           c(_callbacks);
         } else if (_.isArray(c.pre) && _.isArray(c.post)) {
-          var _chained_callbacks = _.extend({}, _callbacks, {
-            complete: _.after(2, _callbacks.complete)
-          });
-          crunch(c.pre).call(undefined, _.extend({}, _chained_callbacks, {
+          _callbacks.complete = _.after(2, _callbacks.complete);
+          crunch(c.pre).call(undefined, _.extend({}, _callbacks, {
               success: function() {
-                crunch(c.post).call(undefined, _chained_callbacks);
+                crunch(c.post).call(undefined, _callbacks);
+              },
+              error: function() {
+                _callbacks.error();
+                _callbacks.complete();
+              },
+              complete: function() {
+                _callbacks.complete();
               }
             })
           );
