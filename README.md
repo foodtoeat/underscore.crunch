@@ -1,4 +1,4 @@
-underscore.plus
+Underscore +
 ===============
 
-Extension for Underscore.
+Extensions for Underscore.js
