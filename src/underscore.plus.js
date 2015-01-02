@@ -42,7 +42,7 @@
                 crunch(c.post).call(undefined, _callbacks);
               },
               error: function() {
-                _callbacks.error();
+                _callbacks.error.apply(undefined, arguments);
                 _callbacks.complete();
               },
               complete: function() {
