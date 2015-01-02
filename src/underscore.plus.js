@@ -24,8 +24,7 @@
           _.isFunction(callbacks.success) ? callbacks.success : function() {}
         ),
         error: _.once(
-          calls.error,
-          _.isFunction(callbacks.error) ? callbacks.success : function() {}
+          _.isFunction(callbacks.error) ? callbacks.error : function() {}
         ),
         complete: _.after(
           calls.length,
