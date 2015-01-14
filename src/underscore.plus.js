@@ -51,11 +51,16 @@
             })
           );
         } else {
-          console.error('Invalid structure');
+          throw 'Invalid structure';
         }
       });
     };
   };
+
+  var finish = _.finish = function(callbacks) {
+    if (_.isFunction(callbacks.success) ) callbacks.success();
+    if (_.isFunction(callbacks.complete) ) callbacks.complete();
+  }
 
   return _;
 }));
