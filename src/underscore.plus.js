@@ -57,10 +57,18 @@
     };
   };
 
+  var complete = _.complete = function(callbacks) {
+    if (callbacks && _.isFunction(callbacks.complete) ) callbacks.complete();
+  };
+
+  var succeed = _.succeed = function(callbacks) {
+    if (callbacks && _.isFunction(callbacks.success) ) callbacks.success();
+  };
+
   var finish = _.finish = function(callbacks) {
-    if (_.isFunction(callbacks.success) ) callbacks.success();
-    if (_.isFunction(callbacks.complete) ) callbacks.complete();
-  }
+    complete(callbacks);
+    succeed(callbacks);
+  };
 
   return _;
 }));
