@@ -20,7 +20,7 @@ Grammar:
 * All functions on X and in 'pre' are executed parallelly,
 * All functions on 'post' are executed after 'pre'
 
-### Example 1: How to user Crunch
+### Example 1: How to use _.crunch
 ```
 _.crunch(
   [
