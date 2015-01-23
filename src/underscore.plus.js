@@ -53,7 +53,7 @@
         var result = {};
 
         _callbacks = _.extend({}, callbacks, {
-          complete: _.after(2, callbacks.complete)
+          complete: _.after(2, callbacks.success || function() {})
         });
 
         result.pre = crunch(x.pre).call(undefined, {
