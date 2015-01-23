@@ -20,7 +20,7 @@ Grammar:
 * All functions on X and in 'pre' are executed parallelly,
 * All functions on 'post' are executed after 'pre'
 
-Example 1: How to user Crunch
+### Example 1: How to user Crunch
 ```
 _.crunch(
   [
@@ -51,10 +51,10 @@ crunched({
 })
 ```
 
-Example 2: How to use crunch to simplify loading multiple models and views, consolidate callbacks, and organize dependencies/flow.
+### Example 2: How to use crunch to simplify loading multiple models and views, consolidate callbacks, and organize dependencies/flow.
 
 ```
-View = Backbone.Views.extend({
+View = Backbone.View.extend({
   load: function(callbacks) {
     view = this;
     this.fetch($.extend({}, callbacks, {
@@ -65,7 +65,7 @@ View = Backbone.Views.extend({
     }));
   },
 
-  // Consolidating multplie models/collections fetche for this view
+  // Consolidating multplie model's/collections' fetches for this view
   fetch: function(callbacks) {
     return _.crunch([
       $.proxy(this.model1.fetch, this.model1),
@@ -80,7 +80,7 @@ View = Backbone.Views.extend({
 
 var view1 = new View({ title: 'I am Important'});
 var view2 = new View({ title: 'I am not that important'});
-var view3 = new View({ title: 'I can be later'});
+var view3 = new View({ title: 'Me neither'});
 
 _.crunch({
   pre: $.proxy(view1.load, view1),
