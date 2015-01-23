@@ -52,9 +52,9 @@
       if (x && x.pre && x.post) {
         var result = {};
 
-        _callbacks = _.extend({}, {
+        _callbacks = _.extend({}, callbacks, {
           complete: _.after(2, callbacks.complete)
-        }, callbacks);
+        });
 
         result.pre = crunch(x.pre).call(undefined, {
           success: function() {
