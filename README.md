@@ -1,6 +1,6 @@
 underscore.crunch
 ===============
-Extensions for for managing callbacks
+Underscore extension for for managing callbacks
 
 
 ## _.crunch
