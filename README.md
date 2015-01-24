@@ -1,11 +1,11 @@
-Underscore +
+underscore.crunch
 ===============
-Extensions for Underscore.js
+Extensions for for managing callbacks
 
 
 ## _.crunch
-Crunch combines multiple callback functions with
-{success:, error:, complete:} recursively into one function.
+Crunch combines multiple callback functions that takes
+`{success : function, error: function, complete: function}` recursively into one function.
 
 Syntax:
 ```javascript
@@ -102,5 +102,3 @@ _.crunch({
   }
 });
 ```
-
-See for yourself!

@@ -1,6 +1,6 @@
 /*
-    Underscore Plus
-    Extension tols for underscore
+    Underscore crunch
+    Extention to underscore for handling callbacks
     (c) 2014 Ashwin Hamal, FoodtoEat
     Underscore Plus may be freely distributed under the MIT license
 */
@@ -56,7 +56,7 @@
           complete: _.after(2, callbacks.success || function() {})
         });
 
-        result.pre = crunch(x.pre).call(undefined, {
+        result.pre = crunch(x.pre, ignore_fail).call(undefined, {
           success: function() {
             result.post = crunch(x.post, ignore_fail).call(undefined, _callbacks);
           },
