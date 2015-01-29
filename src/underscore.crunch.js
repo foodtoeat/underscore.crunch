@@ -53,7 +53,7 @@
         var result = {};
 
         _callbacks = _.extend({}, callbacks, {
-          complete: _.after(2, callbacks.success || function() {})
+          complete: _.after(2, callbacks.complete || function() {})
         });
 
         result.pre = crunch(x.pre, ignore_fail).call(undefined, {
@@ -62,8 +62,7 @@
           },
           error: function() {
             _callbacks.error.apply(undefined, arguments);
-
-            if (ignore_fail){
+            if (ignore_fail) {
               result.post = crunch(x.post, ignore_fail).call(undefined, _callbacks);
             } else {
               _.complete(_callbacks);
