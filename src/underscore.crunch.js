@@ -36,7 +36,11 @@
       var _callbacks;
       if (_.isFunction(x)) return x(callbacks);
 
-      if (_.isArray(x) && !_.isEmpty(x)) {
+      if (_.isArray(x)) {
+        if (_.isEmpty(x)) {
+          return _.finish(callbacks);
+        }
+
         _callbacks = {
           success: _.after( x.length, callbacks.success || function() {} ),
           error: _.once( callbacks.error || function() {} ),
