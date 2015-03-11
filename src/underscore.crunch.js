@@ -14,7 +14,6 @@
     factory(root._);
   }
 }(this, function(_) {
-
   // Calls callback's success method
   var succeed = _.succeed = function(callbacks) {
     if (callbacks && _.isFunction(callbacks.success) ) callbacks.success();
@@ -75,7 +74,7 @@
 
         return result;
       }
-      throw 'Invalid structure for _.crunch';
+      throw Error('Invalid structure for _.crunch');
     };
   };
 
