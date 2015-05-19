@@ -1,7 +1,7 @@
 /*
     Underscore crunch
     Extention to underscore for handling callbacks
-    (c) 2014 Ashwin Hamal, FoodtoEat
+    (c) 2014-2015 Ashwin Hamal, FoodtoEat
 
     Underscore Plus may be freely distributed under the MIT license
 */
@@ -35,7 +35,6 @@
     complete(callbacks);
     succeed(callbacks);
   };
-
 
   // Executes at the same time
   var parallel = _.parallel = function(x) {
@@ -107,13 +106,15 @@
       if (_.isFunction(x)) return x(callbacks);
 
       if (_.isArray(x))
-        return _.parallel( _.map(x, function(_x) { return crunch(_x, persist); }) ) (callbacks);
+        return _.parallel( _.map(x, function(_x) {
+          return crunch(_x, persist);
+        })) (callbacks);
 
       if (x && x.pre && x.post) {
         var result = {};
         _.serial([
-          function(cbs){ result.pre = crunch(x.pre) (cbs); },
-          function(cbs){ result.post = crunch(x.post) (cbs); }
+          function(cbs){ result.pre = crunch(x.pre, persist) (cbs); },
+          function(cbs){ result.post = crunch(x.post, persist) (cbs); }
         ]) (callbacks);
         return result;
       }
