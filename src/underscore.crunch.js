@@ -17,17 +17,20 @@
 } (this, function(_) {
   // Calls callback's success method
   var succeed = _.succeed = function(callbacks, args) {
-    if (callbacks && _.isFunction(callbacks.success) ) callbacks.success(args);
+    if (callbacks && _.isFunction(callbacks.success))
+      callbacks.success.apply(undefined, args);
   };
 
   // Calls callback's complete method
   var complete = _.complete = function(callbacks, args) {
-    if (callbacks && _.isFunction(callbacks.complete) ) callbacks.complete(args);
+    if (callbacks && _.isFunction(callbacks.complete))
+      callbacks.complete.apply(undefined, args);
   };
 
-  // Calls callback's complete method
+  // Calls callback's error method
   var error = _.error = function(callbacks, args) {
-    if (callbacks && _.isFunction(callbacks.error) ) callbacks.error(args);
+    if (callbacks && _.isFunction(callbacks.error))
+      callbacks.error.apply(undefined, args);
   };
 
   // Calls callback's success and complete
@@ -36,7 +39,8 @@
     succeed(callbacks);
   };
 
-  // Executes at the same time
+  // Returns a callback function, that executes all callback functions in an array x
+  // at the same time, and completes/succeeds when all functions complete/succeed
   var parallel = _.parallel = function(x) {
     return function(callbacks) {
       if (!_.isArray(x))
@@ -57,8 +61,8 @@
     };
   };
 
-  // x - list of functions. executes only on previous's success
-  // persist - whether to persist to next one on error.
+  // Returns a callback function, that executes all callback functions in an array x
+  // at serially, and completes/succeeds when all functions complete/succeed
   var serial = _.serial = function(x, persist) {
     if (!_.isArray(x))
       throw Error('Invalid structure for _.serial');
